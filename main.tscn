@@ -8,3 +8,4 @@
 [node name="Map" parent="." instance=ExtResource("1_bclip")]
 
 [node name="Player" parent="." instance=ExtResource("2_axx3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5411, 0, 5.42242)

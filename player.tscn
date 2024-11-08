@@ -1,32 +1,37 @@
 [gd_scene load_steps=4 format=3 uid="uid://iotk3jhoani3"]
 
+[ext_resource type="Script" path="res://player.gd" id="1_73imc"]
 [ext_resource type="PackedScene" uid="uid://b3lqxqhc41cx8" path="res://godot_robot.tscn" id="1_gqlrv"]
-[ext_resource type="Script" path="res://camera.gd" id="2_7jv14"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0fcpv"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_b428v"]
+height = 3.06649
+radius = 0.415504
 
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_73imc")
+cam_rotate_min = -55.0
+cam_rotate_max = 75.0
+camera_sensitivity = 0.3
 
 [node name="Mesh" type="Node3D" parent="."]
 
 [node name="GodotRobot3rdPersonShooterFinal2" parent="Mesh" instance=ExtResource("1_gqlrv")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.632, 0)
-shape = SubResource("CylinderShape3D_0fcpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.572, 0)
+shape = SubResource("CylinderShape3D_b428v")
 
 [node name="Camroot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-script = ExtResource("2_7jv14")
-camera_sens = 0.5
 
 [node name="TPS Offset" type="Node3D" parent="Camroot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91348, 0.268502, -5.81074)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.953496, 0.269, -1.04829)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Camroot/TPS Offset"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 spring_length = 2.0
 margin = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="Camroot/TPS Offset/SpringArm3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -1.74846e-07, 0, 2)
 keep_aspect = 0
