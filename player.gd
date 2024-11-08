@@ -1,11 +1,6 @@
 extends CharacterBody3D
 
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
-@onready var player_mesh: Node3D = $Mesh
-
+# Camera
 @onready var spring_arm: SpringArm3D = $"Camroot/TPS Offset/SpringArm3D"
 @onready var camroot: Node3D = $Camroot
 @export var cam_rotate_min: float
@@ -14,9 +9,24 @@ const JUMP_VELOCITY = 4.5
 var camrot_h: float = 0
 var camrot_v: float = 0
 
+# Player
+@onready var player_mesh: Node3D = $Mesh
+var direction = Vector3.FORWARD
+var target_velocity = Vector3.ZERO
+const GRAVITY: float = 50
+@export var normal_speed: float 
+@export var sprint_speed: float 
+@export var move_acceleration: float
+var move_speed: float
+@onready var anim_tree: AnimationTree = $AnimationTree
+@export var anim_acceleration: float
+
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	spring_arm.add_excluded_object(self)
+	
+	move_speed = normal_speed
 	
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -24,28 +34,39 @@ func _input(event):
 		camrot_v = clamp(camrot_v + event.relative.y * camera_sensitivity, cam_rotate_min, cam_rotate_max)
 	
 func _physics_process(delta: float) -> void:
+	# Camera rotation + player rotation sync
 	camroot.rotation_degrees.x = camrot_v
 	camroot.rotation_degrees.y = camrot_h
 	player_mesh.rotation_degrees.y = camrot_h
 	
+	# Player movement
+	var rot_h = player_mesh.global_transform.basis.get_euler().y
+	direction = Vector3(Input.get_action_strength("left") - Input.get_action_strength("right"),
+				0,
+				Input.get_action_strength("forward") - Input.get_action_strength("backward"))
+	direction = direction.rotated(Vector3.UP, rot_h).normalized()
 	
-	#Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	move_speed = (sprint_speed if Input.is_action_pressed("sprint") else normal_speed)
+	
+	target_velocity.x = lerp(target_velocity.x, direction.x * move_speed, delta * move_acceleration)
+	target_velocity.z = lerp(target_velocity.z, direction.z * move_speed, delta * move_acceleration)
+	target_velocity.y = (0 if is_on_floor() else target_velocity.y - (GRAVITY * delta))
+	
+	# Handle idle, walk, run animations
+	if Input.is_action_pressed("sprint"):
+		anim_tree.set("parameters/iwr_blend/blend_amount",
+					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 1.0, delta * anim_acceleration)
+					)
+	elif target_velocity.length() < 1:
+		anim_tree.set("parameters/iwr_blend/blend_amount",
+					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), -1.0, delta * anim_acceleration)
+					)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		anim_tree.set("parameters/iwr_blend/blend_amount",
+					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 0.0, delta * anim_acceleration)
+					)
+	
+	velocity = target_velocity
 	move_and_slide()
+	
+	
