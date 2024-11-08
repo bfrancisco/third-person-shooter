@@ -21,38 +21,14 @@ mesh = SubResource("PlaneMesh_bw2mu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh Plane/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tv7kq")
 
-[node name="Mesh Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.572, 0.457068, 0)
-mesh = SubResource("BoxMesh_fcn4q")
-
-[node name="Mesh Cube5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96628, 0.511199, -9.63082)
-mesh = SubResource("BoxMesh_fcn4q")
-
-[node name="Mesh Cube6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64899, 0.457, -5.35955)
-mesh = SubResource("BoxMesh_fcn4q")
-
-[node name="Mesh Cube7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8341, 0.526366, 12.237)
-mesh = SubResource("BoxMesh_fcn4q")
-
-[node name="Mesh Cube2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -5.94649, 0.947532, 10.9804)
-mesh = SubResource("BoxMesh_fcn4q")
-
 [node name="Mesh Cube3" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.28, 0, 0, 0, 5.46149, 0, 0, 0, 3.28, 13.4168, 1.971, 6.40671)
+transform = Transform3D(3.28, 0, 0, 0, 5.46149, 0, 0, 0, 3.28, -3.6258, 1.971, 6.40671)
 mesh = SubResource("BoxMesh_fcn4q")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh Cube3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh Cube3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2malm")
-
-[node name="Mesh Cube4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 5.08121, 0.947532, -17.0344)
-mesh = SubResource("BoxMesh_fcn4q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.549536, 0.28004, -0.787139, 0.833017, -0.111508, 0.541894, 0.0639796, -0.95349, -0.294556, -43.0771, 47.3957, 0)
