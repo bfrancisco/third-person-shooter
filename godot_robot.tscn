@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3lqxqhc41cx8"]
+
+[ext_resource type="PackedScene" uid="uid://5hs4dl2fi0d2" path="res://Player/GodotRobot3rdPersonShooterFinal.glb" id="1_4cfxc"]
+
+[node name="GodotRobot3rdPersonShooterFinal" instance=ExtResource("1_4cfxc")]
+
+[node name="Rifle" parent="RobotArmature/Skeleton3D" index="0"]
+transform = Transform3D(-0.129615, -0.0378093, -0.990843, -0.990597, -0.0391902, 0.131078, -0.0437874, 0.998516, -0.032374, -2.1353, 3.68813, 0.0205398)

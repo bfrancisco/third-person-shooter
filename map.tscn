@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc4qxk0o4k5n6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bw2mu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fcn4q"]
+
+[node name="Map" type="Node3D"]
+
+[node name="Mesh Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(23.91, 0, 0, 0, 23.91, 0, 0, 0, 23.91, 0, 0, 0)
+mesh = SubResource("PlaneMesh_bw2mu")
+
+[node name="Mesh Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.572, 0.457068, 0)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="Mesh Cube5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.028, 0.457, -9.651)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="Mesh Cube6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64899, 0.457, -5.35955)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="Mesh Cube7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76076, 0.457, 12.2413)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="Mesh Cube2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -5.94649, 0.947532, 10.9804)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="Mesh Cube3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 13.4168, 0.947532, 6.40671)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="Mesh Cube4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 5.08121, 0.947532, -17.0344)
+mesh = SubResource("BoxMesh_fcn4q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.5802, 0)
