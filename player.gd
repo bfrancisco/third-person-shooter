@@ -48,7 +48,7 @@ func _input(event):
 		camrot_h += -event.relative.x * camera_sensitivity
 		camrot_v = clamp(camrot_v + event.relative.y * camera_sensitivity, cam_rotate_min, cam_rotate_max)
 		print(cam_ray.get_collision_point())
-		print(cam_ray.get_collider().name)
+		print(cam_ray.get_collider().name if cam_ray.is_colliding() else 'not colliding')
 	
 func _physics_process(delta: float) -> void:
 	# Camera rotation + player rotation sync
@@ -56,8 +56,6 @@ func _physics_process(delta: float) -> void:
 	camroot.rotation_degrees.x = camrot_v
 	camroot.rotation_degrees.y = camrot_h
 	cam_ray.force_raycast_update()
-	
-	rifle.target_pos = cam_ray.get_collision_point()
 	
 	# Player movement
 	var rot_h = player_mesh.global_transform.basis.get_euler().y
@@ -86,6 +84,7 @@ func _physics_process(delta: float) -> void:
 					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 0.0, delta * anim_acceleration)
 					)
 					
+	rifle.look_at(cam_ray.get_collision_point())
 	
 	velocity = target_velocity
 	move_and_slide()

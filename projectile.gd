@@ -1,15 +1,10 @@
 extends CharacterBody3D
 
-@export var SPEED = 0.4
+@export var SPEED = 0.5
 var target_position: Vector3 = Vector3.ZERO
 var direction: Basis = Basis.IDENTITY
 
 func _ready() -> void:
-	look_at(target_position)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
