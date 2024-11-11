@@ -9,3 +9,5 @@
 
 [node name="Player" parent="." instance=ExtResource("2_axx3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776, 0)
+cam_rotate_min = -30.0
+cam_rotate_max = 30.0

@@ -3,14 +3,18 @@ extends CharacterBody3D
 # Camera
 @onready var spring_arm: SpringArm3D = $"Camroot/TPS Offset/SpringArm3D"
 @onready var camroot: Node3D = $Camroot
+@onready var cam: Camera3D = $"Camroot/TPS Offset/SpringArm3D/Camera3D"
 @export var cam_rotate_min: float
 @export var cam_rotate_max: float
 @export var camera_sensitivity: float
 var camrot_h: float = 0
 var camrot_v: float = 0
 
+#Raycast
+@onready var cam_ray: RayCast3D = $"Camroot/RayCast3D"
+
 # Player
-@onready var player_mesh: Node3D = $Mesh
+@onready var player_mesh: Node3D = $Camroot/Mesh
 var direction = Vector3.FORWARD
 var target_velocity = Vector3.ZERO
 const GRAVITY: float = 50
@@ -20,7 +24,14 @@ const GRAVITY: float = 50
 var move_speed: float
 @onready var anim_tree: AnimationTree = $AnimationTree
 @export var anim_acceleration: float
+@onready var rifle: Node3D = $Camroot/Rifle
 
+#Crosshair
+@onready var ui_scene: PackedScene = load("res://ui.tscn")
+var ui: Node2D
+
+@onready var projectile: PackedScene = load("res://projectile.tscn")
+@onready var rifle_scene: PackedScene = load("res://rifle.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -28,16 +39,25 @@ func _ready():
 	
 	move_speed = normal_speed
 	
+	ui = ui_scene.instantiate()
+	ui.global_position = get_viewport().size / 2
+	add_child(ui)
+	
 func _input(event):
 	if event is InputEventMouseMotion:
 		camrot_h += -event.relative.x * camera_sensitivity
 		camrot_v = clamp(camrot_v + event.relative.y * camera_sensitivity, cam_rotate_min, cam_rotate_max)
+		print(cam_ray.get_collision_point())
+		print(cam_ray.get_collider().name)
 	
 func _physics_process(delta: float) -> void:
 	# Camera rotation + player rotation sync
+	
 	camroot.rotation_degrees.x = camrot_v
 	camroot.rotation_degrees.y = camrot_h
-	player_mesh.rotation_degrees.y = camrot_h
+	cam_ray.force_raycast_update()
+	
+	rifle.target_pos = cam_ray.get_collision_point()
 	
 	# Player movement
 	var rot_h = player_mesh.global_transform.basis.get_euler().y
@@ -65,8 +85,7 @@ func _physics_process(delta: float) -> void:
 		anim_tree.set("parameters/iwr_blend/blend_amount",
 					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 0.0, delta * anim_acceleration)
 					)
+					
 	
 	velocity = target_velocity
 	move_and_slide()
-	
-	
