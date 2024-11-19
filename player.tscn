@@ -4695,6 +4695,16 @@ tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = PackedFloat32Array(0, 1, 1, 0.999951, 1.00005)
 
+[sub_resource type="Animation" id="Animation_wfrxk"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotArmature/Skeleton3D:shoulder.R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.419089, 0.66657, 0.494084, 0.368686)
+
 [sub_resource type="Animation" id="Animation_j5mbf"]
 resource_name = "T-pose"
 length = 0.001
@@ -5249,16 +5259,6 @@ tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_wfrxk"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RobotArmature/Skeleton3D:shoulder.R")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.419089, 0.66657, 0.494084, 0.368686)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73od1"]
 _data = {
 "2HandAim": SubResource("Animation_85sqi"),
@@ -5313,7 +5313,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.348042, -0.563836, 1.95756)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camroot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35686, -0.124415, -4.68141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35686, -0.124415, 0.306859)
 target_position = Vector3(0, 0, 200)
 collision_mask = 15
 hit_from_inside = true
