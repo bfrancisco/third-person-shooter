@@ -14,6 +14,8 @@ func _physics_process(delta: float) -> void:
 	
 func _on_area_3d_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
 	print('collided with ', body.name)
+	if body.has_method("take_damage"):
+		body.take_damage(1)
 	spawn_explosion()
 	queue_free()
 

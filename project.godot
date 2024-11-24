@@ -23,6 +23,7 @@ project/assembly_name="TPS"
 
 BulletGroup=""
 ExplosionGroup=""
+DestroyExplosionGroup=""
 
 [input]
 

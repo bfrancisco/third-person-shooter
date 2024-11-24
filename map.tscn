@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc4qxk0o4k5n6"]
+[gd_scene load_steps=23 format=3 uid="uid://cc4qxk0o4k5n6"]
 
 [ext_resource type="Texture2D" uid="uid://dmep0d43p0q3w" path="res://Assets/il_300x300.4110860762_ejia.webp" id="1_6vuw1"]
 [ext_resource type="Texture2D" uid="uid://bm28rf2pqm271" path="res://Assets/building1.jpeg" id="1_bpqxl"]
+[ext_resource type="Script" path="res://capsule.gd" id="1_q48nk"]
 [ext_resource type="Texture2D" uid="uid://712r2g8342vf" path="res://Assets/glassbuilding.jpeg" id="2_5j7s7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tru0r"]
@@ -91,6 +92,7 @@ shape = SubResource("BoxShape3D_prym7")
 
 [node name="Capsule 1" type="StaticBody3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.03913, 3.77479, -16.0917)
+script = ExtResource("1_q48nk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 1"]
 mesh = SubResource("CapsuleMesh_1qyrf")
@@ -141,26 +143,97 @@ collision_mask = 9
 
 [node name="Body" type="CSGCylinder3D" parent="Objects/Plane"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
 radius = 1.0
 height = 8.0
 sides = 16
 
 [node name="Wing 1" type="CSGPolygon3D" parent="Objects/Plane"]
 transform = Transform3D(0.947768, 0.318959, -1.39422e-08, 0, -4.37114e-08, -1, -0.318959, 0.947768, -4.14283e-08, -0.696, -0.304244, 1.376)
+visible = false
 polygon = PackedVector2Array(5, 0.5, 1, 1, 1, 0)
 
 [node name="Wing 2" type="CSGPolygon3D" parent="Objects/Plane"]
 transform = Transform3D(-0.895712, 0.444635, -1.39422e-08, 3.09086e-08, 3.09086e-08, -1, -0.444635, -0.895712, -4.14283e-08, 0.345, -0.304, 2.437)
+visible = false
 polygon = PackedVector2Array(5, 0.5, 1, 1, 1, 0)
 
 [node name="Nose" type="CSGSphere3D" parent="Objects/Plane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.012)
+visible = false
 radius = 1.0
 rings = 16
 
 [node name="Tail" type="CSGPolygon3D" parent="Objects/Plane"]
 transform = Transform3D(-9.38638e-09, 4.26917e-08, 1, 0.976672, 0.214735, 0, -0.214735, 0.976672, -4.37114e-08, 0.485, -0.638587, -3.68)
+visible = false
 polygon = PackedVector2Array(3, 0.5, 1, 1, 1, 0)
+
+[node name="Capsule 2" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34612, 9.59953, -27.8034)
+script = ExtResource("1_q48nk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 2"]
+mesh = SubResource("CapsuleMesh_1qyrf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Capsule 2"]
+shape = SubResource("CapsuleShape3D_iwetg")
+
+[node name="Capsule 3" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1439, 14.4686, -21.2306)
+script = ExtResource("1_q48nk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 3"]
+mesh = SubResource("CapsuleMesh_1qyrf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Capsule 3"]
+shape = SubResource("CapsuleShape3D_iwetg")
+
+[node name="Capsule 4" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8094, 12.4352, 3.1955)
+script = ExtResource("1_q48nk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 4"]
+mesh = SubResource("CapsuleMesh_1qyrf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Capsule 4"]
+shape = SubResource("CapsuleShape3D_iwetg")
+
+[node name="Capsule 5" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.417, 10.6502, -22.8183)
+script = ExtResource("1_q48nk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 5"]
+mesh = SubResource("CapsuleMesh_1qyrf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Capsule 5"]
+shape = SubResource("CapsuleShape3D_iwetg")
+
+[node name="Capsule 6" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.315, 11.6423, -36.0715)
+script = ExtResource("1_q48nk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 6"]
+mesh = SubResource("CapsuleMesh_1qyrf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Capsule 6"]
+shape = SubResource("CapsuleShape3D_iwetg")
+
+[node name="Capsule 7" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4659, 9.72108, -8.29581)
+script = ExtResource("1_q48nk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Capsule 7"]
+mesh = SubResource("CapsuleMesh_1qyrf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Capsule 7"]
+shape = SubResource("CapsuleShape3D_iwetg")
 
 [node name="Environment" type="Node3D" parent="."]
 

@@ -15,3 +15,5 @@ cam_rotate_max = 30.0
 [node name="BulletGroup" type="Node3D" parent="." groups=["BulletGroup"]]
 
 [node name="ExplosionGroup" type="Node3D" parent="." groups=["ExplosionGroup"]]
+
+[node name="DestroyGroup" type="Node3D" parent="." groups=["DestroyExplosionGroup"]]
