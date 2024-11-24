@@ -11,3 +11,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776, 0)
 cam_rotate_min = -30.0
 cam_rotate_max = 30.0
+
+[node name="BulletGroup" type="Node3D" parent="." groups=["BulletGroup"]]
+
+[node name="ExplosionGroup" type="Node3D" parent="." groups=["ExplosionGroup"]]

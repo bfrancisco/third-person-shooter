@@ -47,7 +47,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		camrot_h += -event.relative.x * camera_sensitivity
 		camrot_v = clamp(camrot_v + event.relative.y * camera_sensitivity, cam_rotate_min, cam_rotate_max)
-		print(cam_ray.get_collision_point())
+		#print(cam_ray.get_collision_point())
 	
 func _physics_process(delta: float) -> void:
 	# Camera rotation + player rotation sync
