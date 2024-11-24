@@ -54,7 +54,6 @@ func _physics_process(delta: float) -> void:
 	
 	camroot.rotation_degrees.x = camrot_v
 	camroot.rotation_degrees.y = camrot_h
-	cam_ray.force_raycast_update()
 	
 	# Player movement
 	var rot_h = player_mesh.global_transform.basis.get_euler().y
@@ -83,6 +82,7 @@ func _physics_process(delta: float) -> void:
 					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 0.0, delta * anim_acceleration)
 					)
 					
+	cam_ray.force_raycast_update()
 	rifle.look_at(cam_ray.get_collision_point())
 	
 	velocity = target_velocity
