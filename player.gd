@@ -17,7 +17,8 @@ var camrot_v: float = 0
 @onready var player_mesh: Node3D = $Mesh
 var direction = Vector3.FORWARD
 var target_velocity = Vector3.ZERO
-const GRAVITY: float = 50
+const GRAVITY: float = 85
+const JUMP_VEL: float = 1500
 @export var normal_speed: float 
 @export var sprint_speed: float 
 @export var move_acceleration: float
@@ -70,8 +71,12 @@ func _physics_process(delta: float) -> void:
 	target_velocity.y = (0 if is_on_floor() else target_velocity.y - (GRAVITY * delta))
 	
 	# Handle idle, walk, run animations
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		#print("JUMP")
+		target_velocity.y += JUMP_VEL*delta
+		
 	if Input.is_action_just_pressed("shoot"):
-		print("SHOOT")
+		#print("SHOOT")
 		#anim_tree.set("paramters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		anim_tree["parameters/shoot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	

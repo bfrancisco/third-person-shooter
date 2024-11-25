@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
-		print(position)
+		#print(position)
 		var bullet = projectile.instantiate()
 		bullet.position = global_position
 		bullet.target_position = target_pos
