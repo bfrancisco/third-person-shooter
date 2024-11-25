@@ -4,6 +4,7 @@ extends StaticBody3D
 @onready var destroyexplosiongroup: Node3D = get_tree().get_first_node_in_group("DestroyExplosionGroup")
 @export var hp = 3
 
+
 func take_damage(amount: int) -> void:
 	hp -= amount
 	if hp <= 0:

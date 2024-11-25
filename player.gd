@@ -70,6 +70,11 @@ func _physics_process(delta: float) -> void:
 	target_velocity.y = (0 if is_on_floor() else target_velocity.y - (GRAVITY * delta))
 	
 	# Handle idle, walk, run animations
+	if Input.is_action_just_pressed("shoot"):
+		print("SHOOT")
+		#anim_tree.set("paramters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		anim_tree["parameters/shoot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
 	if Input.is_action_pressed("sprint"):
 		anim_tree.set("parameters/iwr_blend/blend_amount",
 					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 1.0, delta * anim_acceleration)
