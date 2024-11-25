@@ -14,7 +14,7 @@ var camrot_v: float = 0
 @onready var cam_ray: RayCast3D = $"Camroot/RayCast3D"
 
 # Player
-@onready var player_mesh: Node3D = $Camroot/Mesh
+@onready var player_mesh: Node3D = $Mesh
 var direction = Vector3.FORWARD
 var target_velocity = Vector3.ZERO
 const GRAVITY: float = 50
@@ -51,9 +51,10 @@ func _input(event):
 	
 func _physics_process(delta: float) -> void:
 	# Camera rotation + player rotation sync
-	
 	camroot.rotation_degrees.x = camrot_v
 	camroot.rotation_degrees.y = camrot_h
+	player_mesh.rotation_degrees.y = camrot_h
+	player_mesh.rotation_degrees.x = camrot_v
 	
 	# Player movement
 	var rot_h = player_mesh.global_transform.basis.get_euler().y
@@ -81,7 +82,8 @@ func _physics_process(delta: float) -> void:
 		anim_tree.set("parameters/iwr_blend/blend_amount",
 					lerp(anim_tree.get("parameters/iwr_blend/blend_amount"), 0.0, delta * anim_acceleration)
 					)
-					
+	
+	# Rifle + Raycast
 	cam_ray.force_raycast_update()
 	rifle.look_at(cam_ray.get_collision_point())
 	

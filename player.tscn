@@ -5295,9 +5295,9 @@ move_acceleration = 20.0
 anim_acceleration = 20.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Camroot/Mesh/GodotRobot3rdPersonShooterFinal2")
+root_node = NodePath("../Mesh/GodotRobot3rdPersonShooterFinal2")
 tree_root = SubResource("AnimationNodeBlendTree_8rvky")
-anim_player = NodePath("../Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/AnimationPlayer")
+anim_player = NodePath("../Mesh/GodotRobot3rdPersonShooterFinal2/AnimationPlayer")
 parameters/iwr_blend/blend_amount = -1.0
 parameters/run_scale/scale = 1.0
 parameters/walk_scale/scale = 1.0
@@ -5306,28 +5306,14 @@ parameters/walk_scale/scale = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.572, 0)
 shape = SubResource("CylinderShape3D_b428v")
 
-[node name="Camroot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+[node name="Mesh" type="Node3D" parent="."]
 
-[node name="Rifle" parent="Camroot" instance=ExtResource("2_qc5k8")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.348042, -0.563836, 1.95756)
+[node name="GodotRobot3rdPersonShooterFinal2" type="Node3D" parent="Mesh"]
 
-[node name="RayCast3D" type="RayCast3D" parent="Camroot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35686, -0.124415, 0.306859)
-target_position = Vector3(0, 0, 200)
-collision_mask = 15
-hit_from_inside = true
-collide_with_areas = true
-
-[node name="Mesh" type="Node3D" parent="Camroot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
-
-[node name="GodotRobot3rdPersonShooterFinal2" type="Node3D" parent="Camroot/Mesh"]
-
-[node name="RobotArmature" type="Node3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2"]
+[node name="RobotArmature" type="Node3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2"]
 transform = Transform3D(0.578472, 0, 0, 0, 0.578472, 0, 0, 0, 0.578472, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00806871, 2.06076e-07, 0.000898492)
 bones/0/name = "spine"
 bones/0/parent = -1
@@ -5512,35 +5498,50 @@ bones/25/position = Vector3(3.88567e-08, 0.302222, -7.89374e-09)
 bones/25/rotation = Quaternion(1.7324e-07, 0.98945, -0.144876, -2.31547e-06)
 bones/25/scale = Vector3(1, 0.999951, 1.00005)
 
-[node name="Rifle" type="BoneAttachment3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+[node name="Rifle" type="BoneAttachment3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
 transform = Transform3D(0.999701, 0.024442, 0.00133004, -0.0243945, 0.999298, -0.0284218, -0.00202403, 0.0283809, 0.999595, -0.624156, 3.1378, 0.900523)
 bone_name = "Rifle"
 bone_idx = 17
 
-[node name="Rifle" type="MeshInstance3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D/Rifle"]
+[node name="Rifle" type="MeshInstance3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D/Rifle"]
 mesh = SubResource("ArrayMesh_s5cpt")
 skeleton = NodePath("")
 
-[node name="Bottom" type="MeshInstance3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+[node name="Bottom" type="MeshInstance3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_fcup0")
 skin = SubResource("Skin_axjgy")
 
-[node name="Chest" type="MeshInstance3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+[node name="Chest" type="MeshInstance3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vpe3q")
 skin = SubResource("Skin_axjgy")
 
-[node name="Face" type="MeshInstance3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+[node name="Face" type="MeshInstance3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_s8cfl")
 skin = SubResource("Skin_axjgy")
 
-[node name="Limbs and Head" type="MeshInstance3D" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+[node name="Limbs and Head" type="MeshInstance3D" parent="Mesh/GodotRobot3rdPersonShooterFinal2/RobotArmature/Skeleton3D"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_n81ne")
 skin = SubResource("Skin_axjgy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camroot/Mesh/GodotRobot3rdPersonShooterFinal2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mesh/GodotRobot3rdPersonShooterFinal2"]
 libraries = {
 "": SubResource("AnimationLibrary_73od1")
 }
+
+[node name="Camroot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Rifle" parent="Camroot" instance=ExtResource("2_qc5k8")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.348042, -0.563836, 1.95756)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camroot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35686, -0.124415, 0.306859)
+target_position = Vector3(0, 0, 200)
+collision_mask = 15
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="TPS Offset" type="Node3D" parent="Camroot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35686, -0.124415, -2.68141)
